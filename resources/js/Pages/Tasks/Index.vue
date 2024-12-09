@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import TaskItem from '@/Components/Tasks/TaskItem.vue'
 
 defineProps({
@@ -18,6 +18,8 @@ defineProps({
             >
                 Tasks
             </h2>
+
+            <Link :href="route('dashboard')">Dashboard</Link>
         </template>
 
         <div class="py-12">

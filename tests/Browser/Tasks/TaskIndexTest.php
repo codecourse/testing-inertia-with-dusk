@@ -11,7 +11,10 @@ it('shows the tasks page', function () {
         $browser
                 ->loginAs($user)
                 ->visit('/tasks')
-                ->assertSee('Tasks'); // @todo looking inside elements
+                ->with('@authenticatedLayoutHeader', function (Browser $browser) {
+                    $browser->assertSee('Tasks');
+                });
+                //->assertSeeIn('@authenticatedLayoutHeader', 'Tasks');
     });
 });
 
