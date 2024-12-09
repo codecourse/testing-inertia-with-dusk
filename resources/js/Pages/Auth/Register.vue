@@ -30,6 +30,7 @@ const submit = () => {
 
                 <TextInput
                     id="name"
+                    name="name"
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.name"
@@ -46,6 +47,7 @@ const submit = () => {
 
                 <TextInput
                     id="email"
+                    name="email"
                     type="email"
                     class="mt-1 block w-full"
                     v-model="form.email"
@@ -61,6 +63,7 @@ const submit = () => {
 
                 <TextInput
                     id="password"
+                    name="password"
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password"
@@ -79,6 +82,7 @@ const submit = () => {
 
                 <TextInput
                     id="password_confirmation"
+                    name="password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
@@ -104,6 +108,7 @@ const submit = () => {
                     class="ms-4"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
+                    dusk="registerButton"
                 >
                     Register
                 </PrimaryButton>
