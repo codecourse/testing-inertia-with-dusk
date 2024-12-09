@@ -26,12 +26,12 @@ defineProps({
                 <div
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
-                    <div class="p-6 text-gray-900">
+                    <div class="p-6 text-gray-900 space-y-6">
                         <div v-if="tasks.length">
                             <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
                         </div>
 
-                        <PrimaryLinkButton :href="route('task.create')" dusk="createTaskButton">
+                        <PrimaryLinkButton :href="route('tasks.create')" dusk="createTaskButton">
                             Create task
                         </PrimaryLinkButton>
                     </div>

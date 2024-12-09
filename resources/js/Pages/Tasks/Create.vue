@@ -1,6 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import TextInput from '@/Components/TextInput.vue'
+import InputError from '@/Components/InputError.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+
+const form = useForm({
+    title: '',
+})
 </script>
 
 <template>
@@ -21,7 +29,32 @@ import { Head } from '@inertiajs/vue3';
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900">
-                        Form
+                        <form v-on:submit.prevent="form.post(route('tasks.store'))">
+                            <div>
+                                <InputLabel for="title" value="Title" />
+
+                                <TextInput
+                                    id="title"
+                                    name="title"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.title"
+                                    required
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.title" />
+                            </div>
+
+                            <div class="mt-4">
+                                <PrimaryButton
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                    dusk="createTaskButton"
+                                >
+                                    Create task
+                                </PrimaryButton>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
