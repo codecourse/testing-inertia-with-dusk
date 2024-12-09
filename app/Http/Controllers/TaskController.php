@@ -12,4 +12,9 @@ class TaskController extends Controller
             'tasks' => $request->user()->tasks
         ]);
     }
+
+    public function create()
+    {
+        return inertia()->render('Tasks/Create');
+    }
 }

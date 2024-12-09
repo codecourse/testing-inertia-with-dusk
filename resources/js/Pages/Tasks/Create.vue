@@ -1,23 +1,17 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import TaskItem from '@/Components/Tasks/TaskItem.vue'
-import PrimaryLinkButton from '@/Components/PrimaryLinkButton.vue'
-
-defineProps({
-    tasks: Array
-})
+import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Head title="Tasks" />
+    <Head title="Create task" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800"
             >
-                Tasks
+                Create task
             </h2>
         </template>
 
@@ -27,13 +21,7 @@ defineProps({
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900">
-                        <div v-if="tasks.length">
-                            <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
-                        </div>
-
-                        <PrimaryLinkButton :href="route('task.create')" dusk="createTaskButton">
-                            Create task
-                        </PrimaryLinkButton>
+                        Form
                     </div>
                 </div>
             </div>

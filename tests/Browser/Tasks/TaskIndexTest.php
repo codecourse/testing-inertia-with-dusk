@@ -40,3 +40,17 @@ it('shows a list of tasks', function () {
         });
     });
 });
+
+it('clicks through to create a new task', function () {
+    $user = User::factory()->create();
+
+    $this->browse(function (Browser $browser) use ($user) {
+        $browser
+            ->loginAs($user)
+            ->visit('/tasks')
+            ->click('@createTaskButton')
+            ->waitForLocation('/tasks/create')
+            ->assertPathIs('/tasks/create')
+            ->assertSeeIn('@authenticatedLayoutHeader', 'Create task');
+    });
+});
