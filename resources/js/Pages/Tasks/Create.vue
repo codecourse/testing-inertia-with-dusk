@@ -6,6 +6,10 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 
+defineProps({
+    status: String
+})
+
 const form = useForm({
     title: '',
 })
@@ -29,6 +33,10 @@ const form = useForm({
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900">
+                        <div v-if="status" class="mb-4 font-semibold text-sm">
+                            {{ status }}
+                        </div>
+
                         <form v-on:submit.prevent="form.post(route('tasks.store'))">
                             <div>
                                 <InputLabel for="title" value="Title" />

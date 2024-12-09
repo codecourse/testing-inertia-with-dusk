@@ -15,7 +15,9 @@ class TaskController extends Controller
 
     public function create()
     {
-        return inertia()->render('Tasks/Create');
+        return inertia()->render('Tasks/Create', [
+            'status' => session('status')
+        ]);
     }
 
     public function store(Request $request)
@@ -26,6 +28,7 @@ class TaskController extends Controller
 
         $request->user()->tasks()->create($data);
 
-        return redirect()->route('tasks.index');
+        return back()->with('status', 'Task created');
+        //return redirect()->route('tasks.index');
     }
 }
