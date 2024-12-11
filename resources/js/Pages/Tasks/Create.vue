@@ -47,10 +47,9 @@ const form = useForm({
                                     type="text"
                                     class="mt-1 block w-full"
                                     v-model="form.title"
-                                    required
                                 />
 
-                                <InputError class="mt-2" :message="form.errors.title" />
+                                <InputError dusk="titleValidationError" class="mt-2" :message="form.errors.title" />
                             </div>
 
                             <div class="mt-4">

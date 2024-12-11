@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskStoreRequest;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -20,13 +21,9 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(TaskStoreRequest $request)
     {
-        $data = $request->validate([
-            'title' => ['required', 'max:255']
-        ]);
-
-        $request->user()->tasks()->create($data);
+        $request->user()->tasks()->create($request->validated());
 
         return back()->with('status', 'Task created');
         //return redirect()->route('tasks.index');

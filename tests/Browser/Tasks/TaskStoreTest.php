@@ -35,3 +35,16 @@ it('creates a task', function () {
         ]);
     });
 });
+
+it('fails if a title is not provided', function () {
+    $user = User::factory()->create();
+
+    $this->browse(function (Browser $browser) use ($user) {
+        $browser
+            ->loginAs($user)
+            ->visit(route('tasks.create'))
+            ->press('@createTaskButton')
+            ->waitFor('@titleValidationError');
+            //->waitForText(__('validation.required', ['attribute' => 'title']));
+    });
+});
