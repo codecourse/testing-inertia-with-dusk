@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskStoreRequest;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -27,5 +28,12 @@ class TaskController extends Controller
 
         return back()->with('status', 'Task created');
         //return redirect()->route('tasks.index');
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return back();
     }
 }
