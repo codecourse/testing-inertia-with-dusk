@@ -1,6 +1,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+
+defineProps({
+    secretKey: String
+})
 </script>
 
 <template>
@@ -21,7 +25,7 @@ import { Head } from '@inertiajs/vue3';
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900">
-                        Hey {{ $page.props.auth.user.name }}
+                        Hey {{ $page.props.auth.user.name }}. Secret key: {{ secretKey }}
                     </div>
                 </div>
             </div>
