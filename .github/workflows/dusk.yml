@@ -5,7 +5,7 @@ jobs:
   dusk:
     runs-on: ubuntu-latest
     env:
-      SOME_SECRET: ${secrets.SOME_SECRET}
+      SOME_SECRET: ${{ secrets.SOME_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
