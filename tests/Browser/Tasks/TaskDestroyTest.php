@@ -48,3 +48,27 @@ it('can cancel deleting a task', function () {
         'id' => $task->id
     ]);
 });
+
+it('deletes a specific task', function () {
+    $user = User::factory()->create();
+
+    $tasks = Task::factory()
+        ->times(3)
+        ->for($user)
+        ->create();
+
+    $taskToDelete = $tasks->get(1);
+
+    $this->browse(function (Browser $browser) use ($user, $taskToDelete) {
+        $browser
+            ->loginAs($user)
+            ->visit(route('tasks.index'))
+            ->click('[dusk="taskItem"]:nth-child(2) [dusk="taskDeleteButton"]')
+            ->acceptDialog()
+            ->waitUntilMissingText($taskToDelete->title);
+    });
+
+    assertDatabaseMissing('tasks', [
+        'id' => $taskToDelete->id
+    ]);
+});
