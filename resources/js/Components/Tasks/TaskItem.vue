@@ -20,11 +20,21 @@ const deleteTask = () => {
 
     router.delete(route('tasks.destroy', props.task))
 }
+
+const editTask = () => {
+    editForm.patch(route('tasks.update', props.task), {
+        onSuccess: () => editing.value = false
+    })
+}
 </script>
 
 <template>
     <div dusk="taskItem" class="flex items-center justify-between h-10 space-x-6">
-        <form v-if="editing" class="flex-grow">
+        <form
+            v-if="editing"
+            class="flex-grow"
+            v-on:submit.prevent="editTask"
+        >
             <TextInput dusk="taskEditInput" v-model="editForm.title" class="h-10 w-full" />
         </form>
         <div v-else>

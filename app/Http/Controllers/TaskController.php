@@ -36,4 +36,15 @@ class TaskController extends Controller
 
         return back();
     }
+
+    public function update(Request $request, Task $task)
+    {
+        $data = $request->validate([
+            'title' => ['required', 'max:255']
+        ]);
+
+        $task->update($data);
+
+        return back();
+    }
 }
