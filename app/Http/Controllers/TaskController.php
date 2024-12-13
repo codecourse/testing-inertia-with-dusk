@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskDestroyRequest;
 use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -30,14 +32,14 @@ class TaskController extends Controller
         //return redirect()->route('tasks.index');
     }
 
-    public function destroy(Task $task)
+    public function destroy(TaskDestroyRequest $request, Task $task)
     {
         $task->delete();
 
         return back();
     }
 
-    public function update(Request $request, Task $task)
+    public function update(TaskUpdateRequest $request, Task $task)
     {
         $data = $request->validate([
             'title' => ['required', 'max:255']
